@@ -25,6 +25,10 @@ describe('bowling', () => {
   it('should have a parameter full of numbers', () => {
     expect(bowling([[10], [10], [4, 6], [10], [10], [3, 6], ['10'], [5, 2], [4, 2], [6, 3]])).to.equal(false);
     expect(bowling([[10], [10], [4, 6], [10], [10], [3, [4, 5]], [10], [5, 2], [4, 2], [6, 3]])).to.equal(false);
+    expect(bowling([[10], [10], [4, 6], [10], [10], [3, {hey: 5}], [10], [5, 2], [4, 2], [6, 3]])).to.equal(false);
+    expect(bowling([[10], [10], [4, 6], [10], [10], [3, null], [10], [5, 2], [4, 2], [6, 3]])).to.equal(false);
+    expect(bowling([[10], [10], [4, 6], [10], [10], [3, undefined], [10], [5, 2], [4, 2], [6, 3]])).to.equal(false);
+    expect(bowling([[10], [10], [4, 6], [10], [10], [3, NaN], [10], [5, 2], [4, 2], [6, 3]])).to.equal(false);
   });
   it('should only take a scoresheet with 10 frames in it', () => {
     expect(bowling([[10], [3, 6], [4, 6]])).to.equal(false);
@@ -46,8 +50,12 @@ describe('bowling', () => {
     expect(bowling([[10], [10], [10], [10], [10], [10], [10], [10], [10], [10, 10]])).to.equal(300);
   });
   it('should return propper score for each scoresheet', () => {
-    expect(bowling([[1, 5], [9, 0], [4, 1], [4, 5], [3, 3], [3, 6], [7, 2], [5, 2], [4, 2], [6, 2]])).to.equal(74);
+    expect(bowling([[1, 5], [9, 0], [4, 1], [4, 'j'], [3, 3], [3, 6], [7, 2], [5, 2], [4, 2], [6, 2]])).to.equal(false);
     expect(bowling([[1, 5], [9, 0], [4, 6], [4, 5], [3, 3], [3, 6], [7, 2], [5, 2], [4, 2], [6, 2]])).to.equal(79);
+    expect(bowling([[1, 5], [9, 0], [4, 6], [4, 5], [3, 3], [3, 6], [7, 2], [5, 9], [4, 2], [6, 2]])).to.equal(false);
+    expect(bowling([[1, 5], [9, 0], [4, 6], [4, 5], [10, 3], [3, 6], [7, 2], [5, 2], [4, 2], [6, 2]])).to.equal(false);
+    expect(bowling([[1, 5], [9, 0], [4, 6], [4, 5], [2, 3], [3, 6], [7, 2], [5, 2], [4, 2], [10, 9]])).to.equal(89);
+    expect(bowling([[10], [10], [10], [10], [10], [10], [10], [10], [10], [10, 9]])).to.equal(109);
   });
 
 });
