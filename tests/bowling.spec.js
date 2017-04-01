@@ -33,16 +33,21 @@ describe('bowling', () => {
     [1, 4], [4, 5], [10], [8, 1], [6, 4], [8, 0]])).to.equal(false);
   });
   it('should have 9 frames with a max of 2 scores, and the last with a max of 3', () => {
-    expect(bowling([[10], [10], [4, 6, 8], [10], [10], [3, 6], [10], [5, 2], [4, 2], [6, 2]])).to.equal(false);
+    expect(bowling([[10], [10], [4, 7, 9], [10], [10], [3, 6], [10], [5, 2], [4, 2], [6, 2]])).to.equal(false);
     expect(bowling([[10], [10], [4, 6], [10], [10], [3, 6], [10], [5, 2], [4, 4], [6, 3, 5, 4]])).to.equal(false);
   });
   it('the sum of pins knocked down in each frame should be less than 10', () => {
     expect(bowling([[10], [10], [4, 6], [10], [10], [3, 6], [10], [5, 6], [4, 8], [6, 8]])).to.equal(false);
   });
   it('should return a score of 0 if the scoresheet is full of zeros', () => {
-    expect(bowling([[0], [0], [0], [0], [0], [0], [0], [0], [0], [0]])).to.equal(0);
+    expect(bowling([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]])).to.equal(0);
   });
   it('should return a score of 300 if all scores are 10', () => {
     expect(bowling([[10], [10], [10], [10], [10], [10], [10], [10], [10], [10, 10]])).to.equal(300);
   });
+  it('should return propper score for each scoresheet', () => {
+    expect(bowling([[1, 5], [9, 0], [4, 1], [4, 5], [3, 3], [3, 6], [7, 2], [5, 2], [4, 2], [6, 2]])).to.equal(74);
+    expect(bowling([[1, 5], [9, 0], [4, 6], [4, 5], [3, 3], [3, 6], [7, 2], [5, 2], [4, 2], [6, 2]])).to.equal(79);
+  });
+
 });
