@@ -22,28 +22,33 @@ module.exports = (scores) => {
       } else if (frame === 9 && scores[frame].length > 3) {
         return false;
       } else {
-        if (scores[frame][0] < 10 && scores[frame][1] < 10 && scores[frame][0] + scores[frame][1] > 10) {
+        if (frame < 9 && scores[frame][0] + scores[frame][1] > 10) {
         return false;
-        } else if (frame < 9 && scores[frame][0] === 10 && scores[frame][1] !== undefined) {
-          return false;
+        } else if (scores[frame][0] < 10 && scores[frame][1] < 10 && scores[frame][0] + scores[frame][1] <= 10) {
+          score += scores[frame][0];
+          score += scores[frame][1];
+          ten = false;
         } else if (frame < 9 && scores[frame][0] === 10) {
           ten = true;
           score += 10;
+        } else if (frame < 9 && scores[frame][0] === 10 && scores[frame][1] !== undefined) {
+          return false;
         } else if (frame <= 9 && scores[frame][0] === 0 && scores[frame][1] === 0) {
           score += 0;
         } else if (frame === 9 && scores[frame][0] === 10 && scores[frame][1] === 10) {
           score += 20;
-        } else if (frame === 9 && scores[frame][0] === 10 && scores[frame][1] !== 10) {
+        } else if (frame === 9 && scores[frame][0] === 10 && scores[frame][1] < 10) {
           score += scores[frame][0];
           score += scores[frame][1];
           ten = false;
-        } else if (frame === 9 && scores[frame][0] !== 10 && scores[frame][1] === 10) {
+        } else if (frame === 9 && scores[frame][0] < 10 && scores[frame][1] === 10) {
           score += scores[frame][0];
           score += scores[frame][1];
           ten = false;
-        } else if (scores[frame][0] < 10 && scores[frame][1] < 10 && scores[frame][0] + scores[frame][1] <= 10) {
+        } else if (frame === 9 && scores[frame][0] < 10 && scores[frame][1] < 10) {
           score += scores[frame][0];
           score += scores[frame][1];
+          ten = false;
         }
       }
       for (var k = 0, b = scores[frame]; k < b.length; k++) {
